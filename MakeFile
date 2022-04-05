@@ -1,0 +1,24 @@
+help:
+	@echo "Команды Make-файла:"
+	@echo "app-server - запускает сервер"
+	@echo "driver - подключает файловую систему"
+	@echo "unmount - отсоединяет файловую систему"
+	@echo "clean - зачищает директорию"
+
+clean:
+	@echo "Cleaning project directory...\n"
+	@rmdir mnt
+
+app-server:
+	@echo "Starting app-server...\n"
+	@python3.10 app.py
+
+driver:
+	@mkdir ./mnt
+	@echo "Connecting remote file system..\n"
+	@python3.10 driver.py mnt
+	@echo "Connection with remote file system established!\n"
+	
+unmount:
+	@echo "Unmountig remote file system..\n"
+	@fusermount -u mnt
